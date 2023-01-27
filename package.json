@@ -8,7 +8,6 @@
   },
   "scripts": {
     "start": "node index",
-    "watch": "nodemon index",
     "test": "jest"
   },
   "repository": {
