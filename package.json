@@ -1,0 +1,28 @@
+{
+  "name": "team-profile-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "start": "node index",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QuantumK9/team-profile-generator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/QuantumK9/team-profile-generator/issues"
+  },
+  "homepage": "https://github.com/QuantumK9/team-profile-generator#readme",
+  "dependencies": {
+    "inquirer": "^8.0.0",
+    "jest": "^29.4.1"
+  }
+}
