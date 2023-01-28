@@ -93,32 +93,55 @@ const questions = {
     },
   ],
 };
+// asks starting questions
+function askQuestions() {
+  return inquirer.prompt(questions.starting);
+}
+// function that asks options questions (list) and then calls the check option function giving the response
+function askOptionsQuestions() {
+  return inquirer.prompt(questions.options).then((response) => {
+    checkOption(response);
+  });
+}
+// function that returns the promise after asking the Engineer questions to user
+const askEngineerQuestions = () => {
+  return inquirer.prompt(questions.engineer);
+};
+// function that returns the promise after asking the Intern questions to user
+const askInternQuestions = () => {
+  return inquirer.prompt(questions.intern);
+};
+// function that exits the loop and renders - later to call render function
+const finish = () => {
+  console.log("render");
+};
+
+// function that takes response from options question fuction and based on option it calls engineer or intern questions functions AND calls askOptionsQuestions function again to ask for option again.
+function checkOption(optionsData) {
+  switch (optionsData.options) {
+    case ENGINEER:
+      return askEngineerQuestions().then((engineerData) => {
+        console.log(engineerData);
+        return askOptionsQuestions();
+      });
+      break;
+    case INTERN:
+      return askInternQuestions().then((internData) => {
+        console.log(internData);
+        return askOptionsQuestions();
+      });
+      break;
+
+    default:
+      return finish();
+      break;
+  }
+}
 
 const init = () => {
-  inquirer.prompt(questions.starting).then((data) => {
-    console.log(data);
-    inquirer.prompt(questions.options).then((optionsData) => {
-      console.log(optionsData);
-      switch (optionsData.options) {
-        case ENGINEER:
-          // console.log("add engineer");
-          inquirer.prompt(questions.engineer).then((engineerData) => {
-            console.log(engineerData);
-            init();
-          });
-          break;
-        case INTERN:
-          // console.log("add intern");
-          inquirer.prompt(questions.intern).then((internData) => {
-            console.log(internData);
-          });
-          break;
-
-        default:
-          console.log("finish");
-          break;
-      }
-    });
+  // call starting questions function and after response call options questions function
+  return askQuestions().then((data) => {
+    return askOptionsQuestions();
   });
 };
 
