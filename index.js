@@ -104,6 +104,7 @@ const init = () => {
           // console.log("add engineer");
           inquirer.prompt(questions.engineer).then((engineerData) => {
             console.log(engineerData);
+            init();
           });
           break;
         case INTERN:
