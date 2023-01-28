@@ -10,6 +10,27 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./src/page-template.js");
 
-
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
+const questions = [
+  {
+    type: "input",
+    name: "name",
+    message: "Enter your name:",
+  },
+  {
+    type: "input",
+    message: "Enter your Employee ID:",
+    name: "id",
+  },
 
+  {
+    type: "input",
+    message: "Enter your email:",
+    name: "email",
+  },
+  {
+    type: "input",
+    message: "Enter your Office number:",
+    name: "officeNumber",
+  },
+];
