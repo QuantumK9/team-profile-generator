@@ -10,6 +10,139 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./src/page-template.js");
 
-
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 
+const ENGINEER = "Add an engineer";
+const INTERN = "Add an intern";
+const FINISH = "Finish building the team";
+
+const questions = {
+  starting: [
+    {
+      type: "input",
+      name: "name",
+      message: "Enter your name:",
+    },
+    {
+      type: "input",
+      message: "Enter your Employee ID:",
+      name: "id",
+    },
+
+    {
+      type: "input",
+      message: "Enter your email:",
+      name: "email",
+    },
+    {
+      type: "input",
+      message: "Enter your Office number:",
+      name: "officeNumber",
+    },
+  ],
+  options: [
+    {
+      type: "list",
+      name: "options",
+      message: "Choose an option:",
+      choices: [ENGINEER, INTERN, FINISH],
+    },
+  ],
+  engineer: [
+    {
+      type: "input",
+      name: "engineerName",
+      message: "Enter Engineer's name:",
+    },
+    {
+      type: "input",
+      name: "engineerId",
+      message: "Enter Engineer's id:",
+    },
+    {
+      type: "input",
+      name: "engineerEmail",
+      message: "Enter Engineer's email:",
+    },
+    {
+      type: "input",
+      name: "engineerGithub",
+      message: "Enter Engineer's Github username:",
+    },
+  ],
+  intern: [
+    {
+      type: "input",
+      name: "internName",
+      message: "Enter Intern's name:",
+    },
+    {
+      type: "input",
+      name: "internId",
+      message: "Enter Intern's id:",
+    },
+    {
+      type: "input",
+      name: "internEmail",
+      message: "Enter Intern's email:",
+    },
+    {
+      type: "input",
+      name: "internSchool",
+      message: "Enter Intern's school:",
+    },
+  ],
+};
+// asks starting questions
+function askQuestions() {
+  return inquirer.prompt(questions.starting);
+}
+// function that asks options questions (list) and then calls the check option function giving the response
+function askOptionsQuestions() {
+  return inquirer.prompt(questions.options).then((response) => {
+    checkOption(response);
+  });
+}
+// function that returns the promise after asking the Engineer questions to user
+const askEngineerQuestions = () => {
+  return inquirer.prompt(questions.engineer);
+};
+// function that returns the promise after asking the Intern questions to user
+const askInternQuestions = () => {
+  return inquirer.prompt(questions.intern);
+};
+// function that exits the loop and renders - later to call render function
+const finish = () => {
+  console.log("render");
+};
+
+// function that takes response from options question fuction and based on option it calls engineer or intern questions functions AND calls askOptionsQuestions function again to ask for option again.
+function checkOption(optionsData) {
+  switch (optionsData.options) {
+    case ENGINEER:
+      return askEngineerQuestions().then((engineerData) => {
+        console.log(engineerData);
+        return askOptionsQuestions();
+      });
+      break;
+    case INTERN:
+      return askInternQuestions().then((internData) => {
+        console.log(internData);
+        return askOptionsQuestions();
+      });
+      break;
+
+    default:
+      return finish();
+      break;
+  }
+}
+
+const init = () => {
+  // call starting questions function and after response call options questions function
+  return askQuestions().then((data) => {
+    return askOptionsQuestions();
+  });
+};
+
+init();
