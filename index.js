@@ -10,6 +10,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./src/page-template.js");
 
+const team = [];
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 
 const ENGINEER = "Add an engineer";
@@ -114,6 +115,8 @@ const askInternQuestions = () => {
 // function that exits the loop and renders - later to call render function
 const finish = () => {
   console.log("render");
+  const pageContent = render(team);
+  writeToFile(outputPath, pageContent);
 };
 
 // function that takes response from options question fuction and based on option it calls engineer or intern questions functions AND calls askOptionsQuestions function again to ask for option again.
@@ -141,8 +144,18 @@ function checkOption(optionsData) {
 const init = () => {
   // call starting questions function and after response call options questions function
   return askQuestions().then((data) => {
+    console.log(data);
+    const { name, id, email, officeNumber } = data;
+    const manager = new Manager(name, id, email, officeNumber);
+    team.push(manager);
     return askOptionsQuestions();
   });
 };
+
+function writeToFile(fileName, data) {
+  fs.writeFile(fileName, data, (err) => {
+    err ? console.log(err) : console.log("Success!");
+  });
+}
 
 init();
