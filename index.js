@@ -1,3 +1,4 @@
+const Employee = require("./lib/Employee");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
@@ -9,7 +10,7 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./src/page-template.js");
-
+// local state of team members
 const team = [];
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 
@@ -114,7 +115,7 @@ const askInternQuestions = () => {
 };
 // function that exits the loop and renders - later to call render function
 const finish = () => {
-  console.log("render");
+  // console.log(`Team: ${team}`);
   const pageContent = render(team);
   writeToFile(outputPath, pageContent);
 };
@@ -124,13 +125,30 @@ function checkOption(optionsData) {
   switch (optionsData.options) {
     case ENGINEER:
       return askEngineerQuestions().then((engineerData) => {
-        console.log(engineerData);
+        // console.log(engineerData);
+        const { engineerName, engineerId, engineerEmail, engineerGithub } =
+          engineerData;
+        const engineer = new Engineer(
+          engineerName,
+          engineerId,
+          engineerEmail,
+          engineerGithub
+        );
+        team.push(engineer);
         return askOptionsQuestions();
       });
       break;
     case INTERN:
       return askInternQuestions().then((internData) => {
-        console.log(internData);
+        // console.log(internData);
+        const { internName, internId, internEmail, internSchool } = internData;
+        const intern = new Intern(
+          internName,
+          internId,
+          internEmail,
+          internSchool
+        );
+        team.push(intern);
         return askOptionsQuestions();
       });
       break;
@@ -144,14 +162,14 @@ function checkOption(optionsData) {
 const init = () => {
   // call starting questions function and after response call options questions function
   return askQuestions().then((data) => {
-    console.log(data);
+    // console.log(data);
     const { name, id, email, officeNumber } = data;
     const manager = new Manager(name, id, email, officeNumber);
     team.push(manager);
     return askOptionsQuestions();
   });
 };
-
+// function that writes data to a file and displays error if not
 function writeToFile(fileName, data) {
   fs.writeFile(fileName, data, (err) => {
     err ? console.log(err) : console.log("Success!");
