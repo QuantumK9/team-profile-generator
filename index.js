@@ -77,6 +77,7 @@ const questions = {
       type: "input",
       name: "engineerGithub",
       message: "Enter Engineer's Github username:",
+      validate: validateText,
     },
   ],
   intern: [
