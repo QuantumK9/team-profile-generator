@@ -23,22 +23,22 @@ const questions = {
     {
       type: "input",
       name: "name",
-      message: "Enter your name:",
+      message: "Enter Team Manager's Name:",
     },
     {
       type: "input",
-      message: "Enter your Employee ID:",
+      message: "Enter Team Manager's Employee ID:",
       name: "id",
     },
 
     {
       type: "input",
-      message: "Enter your email:",
+      message: "Enter Team Manager's email:",
       name: "email",
     },
     {
       type: "input",
-      message: "Enter your Office number:",
+      message: "Enter Team Manager's Office number:",
       name: "officeNumber",
     },
   ],
