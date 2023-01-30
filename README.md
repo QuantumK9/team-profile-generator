@@ -2,18 +2,29 @@
 # Team Profile Generator
 
 ## Description
-This is a program that generates a webpage based on the input of a Team Manager through CLI. The user is asked a number of questions about himself and then about what types of team members he/she wants to add. Depending on his/her choices, details about the members of their team are asked and filled in. When the process is finished, a styled html file is generated displaying the team with all the details entered. \n For this project, classes have been used for different types of employees and validations have been added for the user inputs.
+This is a program that generates a webpage based on the input of a Team Manager through CLI. 
+
+The user is asked a number of questions about themselves and then about what types of team members they want to add. 
+
+Depending on their choices, details about the members of their team are asked and filled in. 
+
+When the process is finished, a styled html file is generated displaying the team with all the details entered. 
+
+For this project, classes have been used for different types of employees and validations have been added for the user inputs.
 
 
 ## Table of contents
-* [Installation ](#installation)
-* [Usage](#usage)
-* [Screenshots](#screenshots)
-* [Contributing](#contributing)
-* [Tests](#tests)
-* [Questions](#questions)
-* [Credits](#credits)
-* [License](#license)
+- [Team Profile Generator](#team-profile-generator)
+  - [Description](#description)
+  - [Table of contents](#table-of-contents)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Screenshots](#screenshots)
+  - [Contributing](#contributing)
+  - [Tests](#tests)
+  - [Questions](#questions)
+  - [Credits](#credits)
+  - [License](#license)
 
 
 ## Installation 
@@ -42,7 +53,7 @@ Open terminal and run the following to run the app.
 
 If you want to contribute : 
 
-For contributions refer to Github section
+[github.com/QuantumK9](https://github.com/QuantumK9)
 
 ## Tests
 
@@ -53,7 +64,7 @@ Run the following script for testing:
 
 ## Questions
 
-For any questions or requests : [github.com/QuantumK9](https://github.com/QuantumK9).
+For any questions or requests : [github.com/QuantumK9](https://github.com/QuantumK9)
 
 ## Credits
 
