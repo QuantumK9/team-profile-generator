@@ -23,23 +23,27 @@ const questions = {
     {
       type: "input",
       name: "name",
-      message: "Enter your name:",
+      message: "Enter Team Manager's Name:",
+      validate: validateText,
     },
     {
       type: "input",
-      message: "Enter your Employee ID:",
+      message: "Enter Team Manager's Employee ID:",
       name: "id",
+      validate: validateNumbers,
     },
 
     {
       type: "input",
-      message: "Enter your email:",
+      message: "Enter Team Manager's email:",
       name: "email",
+      validate: validateEmail,
     },
     {
       type: "input",
-      message: "Enter your Office number:",
+      message: "Enter Team Manager's Office number:",
       name: "officeNumber",
+      validate: validateNumbers,
     },
   ],
   options: [
@@ -55,21 +59,25 @@ const questions = {
       type: "input",
       name: "engineerName",
       message: "Enter Engineer's name:",
+      validate: validateText,
     },
     {
       type: "input",
       name: "engineerId",
       message: "Enter Engineer's id:",
+      validate: validateNumbers,
     },
     {
       type: "input",
       name: "engineerEmail",
       message: "Enter Engineer's email:",
+      validate: validateEmail,
     },
     {
       type: "input",
       name: "engineerGithub",
       message: "Enter Engineer's Github username:",
+      validate: validateText,
     },
   ],
   intern: [
@@ -77,21 +85,25 @@ const questions = {
       type: "input",
       name: "internName",
       message: "Enter Intern's name:",
+      validate: validateText,
     },
     {
       type: "input",
       name: "internId",
       message: "Enter Intern's id:",
+      validate: validateNumbers,
     },
     {
       type: "input",
       name: "internEmail",
       message: "Enter Intern's email:",
+      validate: validateEmail,
     },
     {
       type: "input",
       name: "internSchool",
       message: "Enter Intern's school:",
+      validate: validateText,
     },
   ],
 };
@@ -174,6 +186,32 @@ function writeToFile(fileName, data) {
   fs.writeFile(fileName, data, (err) => {
     err ? console.log(err) : console.log("Success!");
   });
+}
+
+//validation functions
+function validateEmail(input) {
+  let emailReGex =
+    /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+  if (!emailReGex.test(input)) {
+    return "Invalid email";
+  }
+  return true;
+}
+
+const numRegEx = /[0-9]/;
+const stringsRegEx = /[A-Za-z]/;
+function validateText(input) {
+  if (!stringsRegEx.test(input)) {
+    return "Enter some valid input";
+  }
+  return true;
+}
+
+function validateNumbers(input) {
+  if (!numRegEx.test(input) || stringsRegEx.test(input)) {
+    return "Enter some valid numeric input";
+  }
+  return true;
 }
 
 init();
