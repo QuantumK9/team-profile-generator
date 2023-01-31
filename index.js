@@ -10,9 +10,9 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./src/page-template.js");
+// TODO: Write Code to gather information about the development team members, and render the HTML file.
 // local state of team members
 const team = [];
-// TODO: Write Code to gather information about the development team members, and render the HTML file.
 
 const ENGINEER = "Add an engineer";
 const INTERN = "Add an intern";
@@ -125,19 +125,12 @@ const askEngineerQuestions = () => {
 const askInternQuestions = () => {
   return inquirer.prompt(questions.intern);
 };
-// function that exits the loop and renders - later to call render function
-const finish = () => {
-  // console.log(`Team: ${team}`);
-  const pageContent = render(team);
-  writeToFile(outputPath, pageContent);
-};
 
-// function that takes response from options question fuction and based on option it calls engineer or intern questions functions AND calls askOptionsQuestions function again to ask for option again.
+// function that takes response from options question function and based on option it calls engineer or intern questions functions AND calls askOptionsQuestions function again to ask for option again.
 function checkOption(optionsData) {
   switch (optionsData.options) {
     case ENGINEER:
       return askEngineerQuestions().then((engineerData) => {
-        // console.log(engineerData);
         const { engineerName, engineerId, engineerEmail, engineerGithub } =
           engineerData;
         const engineer = new Engineer(
@@ -152,7 +145,6 @@ function checkOption(optionsData) {
       break;
     case INTERN:
       return askInternQuestions().then((internData) => {
-        // console.log(internData);
         const { internName, internId, internEmail, internSchool } = internData;
         const intern = new Intern(
           internName,
@@ -171,22 +163,28 @@ function checkOption(optionsData) {
   }
 }
 
-const init = () => {
-  // call starting questions function and after response call options questions function
-  return askQuestions().then((data) => {
-    // console.log(data);
-    const { name, id, email, officeNumber } = data;
-    const manager = new Manager(name, id, email, officeNumber);
-    team.push(manager);
-    return askOptionsQuestions();
-  });
+// function that exits the loop and renders - later to call render function
+const finish = () => {
+  const pageContent = render(team);
+  writeToFile(outputPath, pageContent);
 };
+
 // function that writes data to a file and displays error if not
 function writeToFile(fileName, data) {
   fs.writeFile(fileName, data, (err) => {
     err ? console.log(err) : console.log("Success!");
   });
 }
+
+const init = () => {
+  // call starting questions function and after response call options questions function
+  return askQuestions().then((data) => {
+    const { name, id, email, officeNumber } = data;
+    const manager = new Manager(name, id, email, officeNumber);
+    team.push(manager);
+    return askOptionsQuestions();
+  });
+};
 
 //validation functions
 function validateEmail(input) {
