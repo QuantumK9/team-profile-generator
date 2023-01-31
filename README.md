@@ -6,11 +6,10 @@ This is a program that generates a webpage based on the input of a Team Manager 
 
 The user is asked a number of questions about themselves and then about what types of team members they want to add. 
 
-Depending on their choices, details about the members of their team are asked and filled in. 
+Depending on their choices, whether they want to add Engineers or Interns, details about the members of their team are asked and filled in. 
+When the process is finished, a styled and mobile-first, responsive, html file is generated displaying the team with all the details entered and links to each team member's email and Github account. 
 
-When the process is finished, a styled html file is generated displaying the team with all the details entered. 
-
-For this project, classes have been used for different types of employees and validations have been added for the user inputs.
+For this project, classes have been used for different types of employees and validations have been added for the user inputs through Inquirer. 
 
 
 ## Table of contents
@@ -43,11 +42,27 @@ Open terminal and run the following to run the app.
   node index.js
 ```
 
-
+[Back to Top](#team-profile-generator)
 
 ## Screenshots
 
+Screenshots of the generated page below.
 
+Desktop:
+
+![desktop](assets/images/screenshot-desktop1.jpg)
+
+Tablet:
+
+![desktop](assets/images/screenshot-tablet2.jpg)
+
+Mobile:
+
+![desktop](assets/images/screenshot-mobile3.jpg)
+
+
+
+[Back to Top](#team-profile-generator)
 
 ## Contributing
 
@@ -77,3 +92,4 @@ MIT License
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
   
+[Back to Top](#team-profile-generator)
